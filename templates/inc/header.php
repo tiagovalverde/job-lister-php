@@ -19,3 +19,4 @@
                 <?php echo SITLE_TITLE ?>
             </h3>
         </div>
+        <?php displayMessage();  ?>

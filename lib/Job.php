@@ -46,4 +46,38 @@ class Job {
         
         return $row;
     }
+
+    public function getJob($id) {
+        $this->db->query("SELECT * FROM jobs WHERE id = :id"); 
+        $this->db->bind(':id', $id);
+        // assign the row
+        $row = $this->db->single();
+        
+        return $row;
+    }
+
+    public function createJob($data) {
+        $this->db->query("INSERT INTO jobs 
+                         (company, category_id, title, description,
+                         location, salary, contact_email, contact_user)
+                         VALUES 
+                         (:company, :category_id, :title, :description,
+                         :location, :salary, :contact_email, :contact_user)");
+        $this->db->bind(':company', $data['company']);
+        $this->db->bind(':category_id', $data['category_id']);
+        $this->db->bind(':title', $data['title']);
+        $this->db->bind(':description', $data['description']);
+        $this->db->bind(':location', $data['location']);
+        $this->db->bind(':salary', $data['salary']);
+        $this->db->bind(':contact_email', $data['contact_email']);
+        $this->db->bind(':contact_user', $data['contact_user']);
+
+        if($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }

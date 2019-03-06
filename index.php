@@ -12,7 +12,7 @@ if($category) {
     $template->title = 'Jobs In ' . $job->getCategory($category)->name;
 } else {
     $template->title = 'Latest Jobs';
-    $template->jobs = $job-> getAllJobs();
+    $template->jobs = $job->getAllJobs();
 }
 
 $template->categories = $job->getCategories();

@@ -19,12 +19,16 @@ class Template {
     }
 
     public function __toString() {
-        extract($this->vars);
-        chdir(dirname($this->template));
-        
-        // buffer
-        ob_start();
-        include basename($this->template);
-        return ob_get_clean();
+       try {
+           extract($this->vars);
+           chdir(dirname($this->template));
+           
+           // buffer
+           ob_start();
+           include basename($this->template);
+           return ob_get_clean();
+       } catch(Exception $e) {
+           var_dump($exception->getMessage());
+       }
     }
 }
